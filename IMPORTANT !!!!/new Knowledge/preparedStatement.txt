@@ -1,0 +1,10 @@
+﻿
+JDBC Statements		Mục đích sử dụng
+Statement		Hữu ích khi bạn đang sử dụng câu lệnh SQL tĩnh khi chạy. Statement không chấp nhận tham số 
+			(parameters).
+PreparedStatement	PreparedStatement cho phép chỉ định tham số đầu vào khi chạy.
+CallableStatement	Sử dụng khi bạn muốn truy cập stored procedures. CallableStatement cũng chấp nhận tham số 
+			đầu vào khi chạy.
+boolean execute (String SQL): Trả về giá trị true nếu thực thi thành công câu lệnh SQL; ngược lại sẽ trả về giá trị false. Sử dụng phương thức này để thực thi các câu lệnh SQL DDL như tạo cơ sở dữ liệu, tạo bảng, …
+int executeUpdate (String SQL): Trả về số dòng bị tác động khi thực thi các câu lệnh như INSERT, UPDATE hoặc DELETE.
+ResultSet executeQuery (String SQL): Trả về một đối tượng ResultSet khi bạn thực thi câu lệnh SELECT.

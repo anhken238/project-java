@@ -1,0 +1,5 @@
+﻿id ở view luôn luôn là th:fied="id" vì có kiểu Long nên ko thể để th:text.
+. JPA đặc tả hay còn có thể gọi là chuẩn cho cách chúng ta truy cập, lưu trữ và quản lý dữ liệu giữa các đối tượng trong Java và các loại database (Object Relational Mapping)
+
+Annotation @OneToMany thực hiện mapping one to many. 1 đối tượng Company sẽ chứa nhiều đối tượng Employee (có thể là Set hoặc List)
+mappedBy = "company" sẽ hiểu la mapping thông qua thuộc tính company trong class Employee

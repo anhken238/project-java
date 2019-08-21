@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Simple Contact Form</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            color: #566787;
+            background: #f5f5f5;
+            font-family: "Open Sans", sans-serif;
+        }
+        .contact-form {
+            padding: 50px;
+            margin: 30px 0;
+        }
+        .contact-form h1 {
+            text-transform: uppercase;
+            margin: 0 0 15px;
+        }
+        .contact-form .form-control, .contact-form .btn  {
+            min-height: 38px;
+            border-radius: 2px;
+        }
+        .contact-form .btn-primary {
+            min-width: 150px;
+            background: #299be4;
+            border: none;
+        }
+        .contact-form .btn-primary:hover {
+            background: #1c8cd7;
+        }
+        .contact-form label {
+            opacity: 0.9;
+        }
+        .contact-form textarea {
+            resize: vertical;
+        }
+        .hint-text {
+            font-size: 15px;
+            padding-bottom: 15px;
+            opacity: 0.8;
+        }
+        .bs-example {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 m-auto">
+            <div class="contact-form">
+                <h1>View Employee</h1>
+                <p class="hint-text">We'd love to hear from you, please drop us a line if you've any query.</p>
+                <form th:object="${employee}">
+                    <div class="row">
+                        <input type="hidden" th:field="*{id}"  class="form-control"  >
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                            <label >Mã Nhân Viên</label>
+                                <label type="text" th:text="*{code}" class="form-control"  required></label>
+                            <span style="color: red" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Tên Nhân Viên</label>
+                                <label  th:text="*{name}"  class="form-control" ></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Ngày Sinh</label>
+                                <label type="date" th:text="*{dateOfBirth}"  class="form-control"  ></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Giới Tính</label>
+                                <label th:text="*{gender}" class="form-control"></label>
+<!--                                <select  th:field="*{gender}" >-->
+<!--                                    <option  th:text="*{gender}"></option>-->
+<!--                                </select>-->
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Số Điện Thoại</label>
+                                <label  th:text="*{phone}" class="form-control"  ></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Số Chứng Minh Nhân Dân</label>
+                                <label th:text="*{identityCard}" class="form-control"  ></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Địa Chỉ</label>
+                                <label th:text="*{address}" class="form-control" ></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Nhóm Nhân Viên</label>
+                                <label th:text="${employee.employeeGroup.nameEmployeeGroup}" class="form-control"></label>
+<!--                                <select th:field="*{employeeGroup}">-->
+<!--                                    <option th:text="${employee.employeeGroup.nameEmployeeGroup}" ></option>-->
+<!--                                </select>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <label th:text="*{email}"  class="form-control" id="inputEmail" ></label>
+                    </div>
+
+                </form>
+                <br>
+                <i class="fa fa-paper-plane"></i><a href="/list" class="btn btn-primary btn-block btn-lg"> Back to your list employee</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

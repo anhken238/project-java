@@ -1,0 +1,32 @@
+﻿@Autowired là tiêm vào. và nhớ là tuân thủ S.O.L.I.D (tiêm # new , design patern.)
+Tìm kiếm theo tên,vv nhớ đặt tên giống nhau sql
+
+@EnableSpringDataWebSupport :
+Tự động lấy tham số đổi thành model, mapping id => model(nếu lấy @Pathvalibute "id")
+Ví dụ: 	@Controller
+	@RequestMapping("/users")
+	class	UserController	{
+	@RequestMapping("/{id}")
+		String	showUserForm(@PathVariable("id") User user,Model model)	{
+		model.addAttribute("user",user);
+		return	"userForm";
+	}
+}
+
+Thay vì lấy requestParam từng cái thì dùng cái này :
+	@Controller
+	@RequestMapping("/users")
+	class	UserController	{
+	@Autowired
+	private	UserRepository	repository;
+	@RequestMapping
+		String	showUsers(Model	model,	Pageable	pageable)	{
+		model.addAttribute("users",	repository.findAll(pageable));
+		return	"users";
+			}
+	}
+tự động mappg
+
+get là hiển thị, set là lấy.
+
+DatTimeFormat (pattern = "dd/MM/yy hh:mm) --> ngoài index : th:value="${blog.getDateCreate()}", th:filed ="${DateCreate}"

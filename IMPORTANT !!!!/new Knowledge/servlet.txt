@@ -1,0 +1,69 @@
+package Controller;
+
+import Model.Subscriber;
+import Service.subcriber.ISubcriber;
+import Service.subcriber.SubcriberImpl;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet(name = "SubscriberServlet", urlPatterns = "subcribers")
+public class SubscriberServlet extends HttpServlet {
+    private ISubcriber subcriber = new SubcriberImpl();
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "Create":
+                createSubscriber(request, response);
+                break;
+            case "edit":
+                updateSubscriber(request, response);
+                break;
+            case "delete":
+                deleteSubscriber(request, response);
+                break;
+            case "view":
+            default:
+                listSubscriber(request,response);
+                break;
+        }
+    }
+    private void createSubscriber(HttpServletRequest request,HttpServletResponse response){
+            int id = Integer.parseInt(request.getParameter("id"));
+            Subscriber subscriber = new Subscriber(id);
+        RequestDispatcher dispatcher;
+        this.SubcriberImpl.createSubscriber(subscriber);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "Create":
+                ShowCreateSubscriberForm(request, response);
+                break;
+            case "edit":
+                ShowUpdateSubscriberForm(request, response);
+                break;
+            case "delete":
+                ShowdeleteSubscriberForm(request, response);
+                break;
+            default:
+                listSubscriber(request,response);
+                break;
+        }
+    }
+}

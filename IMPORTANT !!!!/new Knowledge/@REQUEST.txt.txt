@@ -1,0 +1,7 @@
+﻿– @Controller: trong Spring Framework thì @Controller được dùng để đánh dấu đây là lớp xử lý, lớp điều khiển (controller)
+
+– @RequestMapping: bạn sử dụng chú thích @RequestMapping để nhằm khai báo nhằm gọi đến địa chỉ URL tương ứng để xử lý
+
+– @ModelAttribute: chú thích @ModelAttribute trong Spring Framework sẽ hữu ích đối với trường hợp bạn lấy dữ liệu với nhiều tham sốnhư một đối tượng chẳng hạn, sử dụng @ModelAttribute sẽ tốt hơn nếu như bạn muốn sử dụng @RequestParam.
+
+- @RequestParam lấy từng dữ liệu từ view qua, Nó chỉ là nhiệm vụ lấy dữ liệu chứ không được khai báo biến hay bất cứ cái gì  ở mục này.

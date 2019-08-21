@@ -1,0 +1,7 @@
+﻿JAVASCRIPT()
+front end : 
+Dom manipulation-> duyệt cái dom ntn, xử lý phần tử ra sao!
+event
+callback-> khi bấm vào 1 nút thì chạy những cái gì, khi bấm, lăn chuột chỗ nào đó.
+AJAX call-> làm sao client gọi data tới sv và  lấy dữ liệu từ sv hiển thị về được. 
+NodeJS: require, async io, node package, npm

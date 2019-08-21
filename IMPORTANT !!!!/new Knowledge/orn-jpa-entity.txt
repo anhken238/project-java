@@ -1,0 +1,8 @@
+﻿ ORM là cơ chế ánh xạ dữ liệu giữa môi trường thực thi (OPP )và csdl
+ JPA javaPersiserAPI là đặc tả của java dành cho các thao tác dữ liệu:
+	Thay vì truy vấn đến các bảng , ta sử dụng TypeQuery để truy vấn đến các Class 
+	( các entity ở đây được hiểu như các  bảng trong csdl,)
+ Entity là các đối tượng đại diện cho dữ liệu
+ Entity Manager là đối tượng quản lý các entity
+ Spring Data JPA là framework của Spring hỗ trợ JPA, giúp cho việc
+triển khai JPA trở nên thuận tiện hơ

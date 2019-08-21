@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" th:action="@{/delete-employee}" method="post"
+      th:object="${employee}">
+    <table >
+        <tr>
+            <td><input type="hidden" th:field="*{id}"></td>
+        </tr>
+        <td>Name</td>
+        <td><label th:text="${employee.name}" ></label></td>
+        </tr>
+        <tr>
+            <td>Ngay Sinh</td>
+            <td><label th:text="${employee.dateOfBirth}"></label></td>
+        </tr>
+        <tr>
+            <td>Gioi Tinh</td>
+            <td>
+                <label th:text="${employee.dateOfBirth}"></label>
+            </td>
+        </tr>
+        <tr>
+            <td>So Dien Thoai</td>
+            <td><label th:text="${employee.phone}"></label></td>
+        </tr>
+        <tr>
+            <td>So CMND</td>
+            <td><label th:text="${employee.identityCard}"></label></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><label th:text="${employee.email}"></label></td>
+        </tr>
+        <tr>
+            <td>Dia Chi</td>
+            <td><label th:text="${employee.address}"></label></td>
+        </tr>
+        <tr>
+            <td>Nhom Nhan Vien:</td>
+            <td>
+                <select th:field="*{employeeGroup}">
+                    <option  th:value="${employee.employeeGroup.id}" th:text="${employee.employeeGroup.nameEmployeeGroup}"></option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Delete employee">
+</form>
+</body>
+</html>

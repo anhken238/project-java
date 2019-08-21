@@ -1,0 +1,20 @@
+﻿gender trong java ta nhập nó như 1 dạng String và set Value = "" thẳng vào trang wed.
+tự nó sẽ hiển thị trong database.
+
+        <tr>
+            <td>Gioi Tinh</td>
+            <td>
+            <select th:field="*{gender}">
+                <option  value="FEMALE">Nam</option>
+                <option  value="MALE" >Nữ</option>
+                <option  value="THREE" >Thứ Ba</option>
+                <option  value="UNKNOW" >Unknow</option>
+            </select>
+            </td>
+            <td>
+                <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">..</span>
+            </td>
+        </tr>
+
+
+ngoài ra còn có cách: tạo 1 enum Gender trong model. set 3 thuộc tính , dùng hashmap hoặc foreach lấy thuộc tính ra.

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Simple Contact Form</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            color: #566787;
+            background: #f5f5f5;
+            font-family: "Open Sans", sans-serif;
+        }
+        .contact-form {
+            padding: 50px;
+            margin: 30px 0;
+        }
+        .contact-form h1 {
+            text-transform: uppercase;
+            margin: 0 0 15px;
+        }
+        .contact-form .form-control, .contact-form .btn  {
+            min-height: 38px;
+            border-radius: 2px;
+        }
+        .contact-form .btn-primary {
+            min-width: 150px;
+            background: #299be4;
+            border: none;
+        }
+        .contact-form .btn-primary:hover {
+            background: #1c8cd7;
+        }
+        .contact-form label {
+            opacity: 0.9;
+        }
+        .contact-form textarea {
+            resize: vertical;
+        }
+        .hint-text {
+            font-size: 15px;
+            padding-bottom: 15px;
+            opacity: 0.8;
+        }
+        .bs-example {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 m-auto">
+            <div class="contact-form">
+                <h1>Create New Employee</h1>
+                <th:block th:if="${message}">
+                    <p style="color: red" th:text="${message}"></p>
+                </th:block>
+                <p class="hint-text">We'd love to hear from you, please drop us a line if you've any query.</p>
+                <form action="" th:action="@{/create-employee}" method="post" th:object="${employee}">
+                    <div class="row">
+                                <input type="hidden" th:field="*{id}"  class="form-control"  >
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Mã Nhân Viên</label>
+                                <input type="text" th:field="*{code}" class="form-control"  required>
+                                <span style="color: red" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Tên Nhân Viên</label>
+                                <input type="text" th:field="*{name}" class="form-control"  required>
+                                <span style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Ngày Sinh</label>
+                                <input type="date" th:field="*{dateOfBirth}" class="form-control"  required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Giới Tính</label>
+<!--                                <input type="text" class="form-control" class="inputLastName" required>-->
+                                <select class="form-control" th:field="*{gender}" required>
+                                    <option  value="Nam">Nam</option>
+                                    <option  value="Nữ" >Nữ</option>
+                                    <option  value="Thứ Ba" >Thứ Ba</option>
+                                    <option  value="UNKNOW" >Không Xác định</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Số Điện Thoại</label>
+                                <input  th:field="*{phone}" class="form-control" pattern="(09|08|03)+([0-9]{8,12})" required>
+                                <span style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Số Chứng Minh Nhân Dân</label>
+                                <input th:field="*{identityCard}" class="form-control"  required>
+                                <span style="color: red" th:if="${#fields.hasErrors('identityCard')}" th:errors="*{identityCard}"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Địa Chỉ</label>
+                                <input th:field="*{address}" class="form-control"  required>
+                                <span style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label >Nhóm Nhân Viên</label>
+                                <select th:field="*{employeeGroup}">
+                                    <option th:each="p : ${employeegroup}" th:value="${p.id}" th:text="${p.nameEmployeeGroup}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <input th:field="*{email}" type="email" class="form-control" id="inputEmail" required>
+                        <span style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </form>
+                <br>
+                <i class="fa fa-paper-plane"></i><a href="/list" class="btn btn-primary btn-block btn-lg"> Back to your list employee</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<th:block th:if="${message}">-->
+<!--    <p th:text="${message}"></p>-->
+<!--</th:block>-->
+<!--<form action="" th:action="@{/create-employee}" method="post" th:object="${employee}">-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>Mã Nhân Viên</td>-->
+<!--            <td><input th:field="*{id}"></td>-->
+<!--            <span style="color: red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Tên Nhân Viên</td>-->
+<!--            <td><input th:field="*{name}"></td>-->
+<!--            <span style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>-->
+<!--        </tr>-->
+
+<!--        <tr>-->
+<!--            <td>Ngày Sinh</td>-->
+<!--            <td><input type="date" th:field="*{dateOfBirth}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Giới Tinh</td>-->
+<!--            <td>-->
+<!--            <select th:field="*{gender}">-->
+<!--                <option  value="FEMALE">Nam</option>-->
+<!--                <option  value="MALE" >Nữ</option>-->
+<!--                <option  value="THREE" >Thứ Ba</option>-->
+<!--                <option  value="UNKNOW" >Unknow</option>-->
+<!--            </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Số Điện Thoại</td>-->
+<!--            <td><input  th:field="*{phone}"></td>-->
+<!--            <td>-->
+<!--            <span style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Số Chứng Minh Nhân Dân</td>-->
+<!--            <td><input th:field="*{identityCard}"></td>-->
+<!--            <td>-->
+<!--            <span style="color: red" th:if="${#fields.hasErrors('identityCard')}" th:errors="*{identityCard}"></span>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Email</td>-->
+<!--            <td><input type="email" th:field="*{email}"></td>-->
+<!--            <td>-->
+<!--            <span style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Địa Chỉ</td>-->
+<!--            <td><input th:field="*{address}"></td>-->
+<!--            <td>-->
+<!--            <span style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Nhóm Nhân Viên</td>-->
+<!--            <td>-->
+<!--                <select th:field="*{employeeGroup}">-->
+<!--                    <option th:each="p : ${employeegroup}" th:value="${p.id}" th:text="${p.nameEmployeeGroup}"></option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--    <input type="submit" value="Create employee">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->

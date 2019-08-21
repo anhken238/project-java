@@ -1,0 +1,19 @@
+﻿
+    @NotEmpty(message="Giới tính không được để trống!")
+    private boolean sex;
+        <tr>
+            <td>Sex:</td>
+            <td><select th:field="*{sex}" required>
+                <option th:value="true" th:text="Men"></option>
+                <option th:value="false" th:text="Woman"></option>
+            </select></td>
+        </tr>
+
+    @NotEmpty(message="Điện thoại không được để trống!")
+    @Pattern(regexp = "(09|08|03)+([0-9]{8})")
+    private String phone;
+
+
+    @NotEmpty(message="Email không được để trống!")
+    @Email(message="Email does not the correct format")
+    private String email;

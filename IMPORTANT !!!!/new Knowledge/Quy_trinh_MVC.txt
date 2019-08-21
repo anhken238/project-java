@@ -1,0 +1,15 @@
+﻿Tạo sơ đồ project gồm 4 tier (theo thứ tự):
+   - model: Biểu diễn dữ liệu và logic các nghiệp vụ
+      + 1 class ConnectionManager để kết nối tới CSDL (note: import jdbc lib)
+      + 1 class chứa đối tượng cần làm việc (khai báo, khởi tạo, getter, setter.)
+
+   - service:
+      + 1 interface quy định các method để làm việc với đối tượng
+      + 1 class để implements interface ở trên (cài đặt cụ thể các method)
+
+   - controller: xử lý thao tác người dùng
+      + 1 servlet để tương tác giữa model và view (mỗi đối tượng có 1 servlet)
+
+   - view: hiển thị dữ liệu và là giao diện tương tác người dùng
+      + thông thường sẽ có 5 file jsp: list, create, edit, delete, view. Sử dụng JSTL
+để hiển thị dữ liệu cho client (note: import JSTL lib)
